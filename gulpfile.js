@@ -1,7 +1,7 @@
 ﻿var Path = require('path');
 //var fs = require('fs');
 //var es = require('event-stream');
-//var del = require('del');
+var del = require('del');
 
 var gulp = require('gulp');
 var concat = require('gulp-concat');
@@ -85,6 +85,14 @@ gulp.task('js-player', function() {
 });
 
 gulp.task('js-all', ['js-dev', 'js-min', 'js-player-dev', 'js-player']);
+
+////////////////////////////////////////////////////
+// clean
+///////////////////////////////////////////////////
+
+gulp.task('clean', function(cb) {
+    del('bin/', cb);
+});
 
 //// doc
 //gulp.task('export-api-syntax', function (done) {
