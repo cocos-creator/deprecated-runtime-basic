@@ -21,6 +21,7 @@ var paths = {
     src: [
         'src/pixi-render-context.js',
         'src/pixi-bitmap-font.js',
+        'src/pixi-text.js',
     ],
     index: 'src/index.js',
 
