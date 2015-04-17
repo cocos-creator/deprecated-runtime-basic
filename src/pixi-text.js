@@ -10,10 +10,10 @@ function _getTextStyle (target) {
             align: Fire.TextAlign[target.align].toLowerCase()
         };
         if (target.fontType !== Fire.Text.FontType.Custom){
-            style.font = target.size + "px" + " " + Fire.Text.FontType[target.fontType].toLowerCase()
+            style.font = target.size + "px" + " " + Fire.Text.FontType[target.fontType].toLowerCase();
         }
         else{
-            style.font = target.size + "px" + " " + target.customFontType
+            style.font = target.size + "px" + " " + target.customFontType;
         }
         return style;
     }
