@@ -14,7 +14,7 @@ function _getStyle (target) {
     if (target.bitmapFont && target.bitmapFont._uuid) {
         return {
             font : target.bitmapFont.size + " " + target.bitmapFont._uuid,
-            align: BitmapText.TextAlign[target.align].toLowerCase(),
+            align: Fire.TextAlign[target.align].toLowerCase(),
         };
     }
     else {

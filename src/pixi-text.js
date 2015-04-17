@@ -7,7 +7,7 @@ function _getTextStyle (target) {
     if (target._renderObj || target._renderObjInScene) {
         var style = {
             fill : "#" + target.color.toHEX('#rrggbb'),
-            align: Fire.Text.TextAlign[target.align].toLowerCase()
+            align: Fire.TextAlign[target.align].toLowerCase()
         };
         if (target.fontType !== Fire.Text.FontType.Custom){
             style.font = target.size + "px" + " " + Fire.Text.FontType[target.fontType].toLowerCase()
