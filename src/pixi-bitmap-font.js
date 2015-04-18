@@ -3,6 +3,7 @@
 
 // unload asset
 Fire.BitmapFont.prototype._onPreDestroy = function () {
+    Fire.Asset.prototype._onPreDestroy.call(this);
     if (this._uuid) {
         PIXI.BitmapText.fonts[this._uuid] = null;
     }
