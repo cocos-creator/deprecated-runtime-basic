@@ -23,6 +23,9 @@ var paths = {
         'src/pixi-bitmap-font.js',
         'src/pixi-text.js',
     ],
+    editor: [
+        'src/editor/render-context-extends.js',
+    ],
     index: 'src/index.js',
 
     // output
@@ -38,7 +41,7 @@ var paths = {
 /////////////////////////////////////////////////////////////////////////////
 
 gulp.task('js-dev', function() {
-    return gulp.src(paths.src)
+    return gulp.src(paths.src.concat(paths.editor))
         .pipe(jshint({
            multistr: true,
            smarttabs: false,
@@ -53,7 +56,7 @@ gulp.task('js-dev', function() {
 });
 
 gulp.task('js-min', function() {
-    return gulp.src(paths.src)
+    return gulp.src(paths.src.concat(paths.editor))
         .pipe(concat(Path.basename(paths.output_min)))
         .pipe(fb.wrapModule(paths.index))
         .pipe(preprocess({context: { EDITOR: true, DEV: true }}))
