@@ -4,7 +4,7 @@ PIXI.Text.prototype.updateTransform = function () {
 var PixiTextUtil = {};
 
 function _getTextStyle (target) {
-    if (target._renderObj || target._renderObjInScene) {
+    if (target) {
         var style = {
             fill : "#" + target.color.toHEX('#rrggbb'),
             align: Fire.TextAlign[target.align].toLowerCase()
