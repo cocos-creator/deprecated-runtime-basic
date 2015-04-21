@@ -25,6 +25,7 @@ var paths = {
     ],
     editor: [
         'src/editor/render-context-extends.js',
+        'src/editor/graphics.js',
     ],
     index: 'src/index.js',
 
@@ -123,7 +124,7 @@ gulp.task('clean', function(cb) {
 
 // watch
 gulp.task('watch', function() {
-    gulp.watch(paths.src.concat(paths.index), ['default']).on ( 'error', gutil.log );
+    gulp.watch(paths.src.concat(paths.index, paths.editor), ['default']).on ( 'error', gutil.log );
 });
 
 // tasks
