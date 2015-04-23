@@ -68,6 +68,16 @@ var RenderContext = (function () {
         }
     });
 
+    /**
+     * The canvas's parent node in dom.
+     * @property _container
+     * @type {HTMLElement}
+     * @private
+     */
+    JS.get(RenderContext.prototype, 'container', function () {
+        return this.canvas.parentNode;
+    });
+
     Object.defineProperty(RenderContext.prototype, 'width', {
         get: function () {
             return this.renderer.width;
@@ -552,4 +562,4 @@ RenderContext.prototype.checkMatchCurrentScene = function () {
 };
 // @endif
 
-Fire._Runtime.RenderContext = RenderContext;
+Runtime.RenderContext = RenderContext;
