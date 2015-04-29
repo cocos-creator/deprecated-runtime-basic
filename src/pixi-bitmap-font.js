@@ -187,7 +187,7 @@ RenderContext.prototype.addBitmapText = function (target) {
     }
 };
 
-RenderContext.updateBitmapTextTransform = function (target, tempMatrix) {
+RenderContext.prototype.updateBitmapTextTransform = function (target, tempMatrix) {
     var i = 0, childrens = null, len = 0, child = null;
     var isGameView = Engine._curRenderContext === Engine._renderContext;
     if (isGameView && target._renderObj) {

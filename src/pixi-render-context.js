@@ -351,7 +351,7 @@ var RenderContext = (function () {
         }
         // @endif
 
-        this.updateSpriteColor(target);
+        this.updateColor(target);
     };
 
     RenderContext.prototype.show = function (target, show) {
@@ -374,7 +374,7 @@ var RenderContext = (function () {
         // @endif
     };
 
-    RenderContext.prototype.updateSpriteColor = function (target) {
+    RenderContext.prototype.updateColor = function (target) {
         var tint = target._color.toRGBValue();
         if (target._renderObj) {
             target._renderObj.tint = tint;
