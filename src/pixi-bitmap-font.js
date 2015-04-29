@@ -16,7 +16,6 @@ function _getStyle (target) {
         return {
             font : target.bitmapFont.size + " " + target.bitmapFont._uuid,
             align: Fire.TextAlign[target.align].toLowerCase(),
-            tint: "#" + target.color.toHEX('#rrggbb'),
         };
     }
     else {
@@ -164,10 +163,6 @@ RenderContext.prototype.setText = function (target, newText) {
 };
 
 RenderContext.prototype.setAlign = function (target) {
-    _setStyle(target);
-};
-
-RenderContext.prototype.setColor = function (target) {
     _setStyle(target);
 };
 
