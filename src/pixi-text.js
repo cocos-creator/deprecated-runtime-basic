@@ -83,7 +83,7 @@ RenderContext.prototype.getTextSize = function (target) {
     return new Vec2(w, h);
 };
 
-RenderContext.updateTextTransform = function (target, tempMatrix) {
+RenderContext.prototype.updateTextTransform = function (target, tempMatrix) {
     var i = 0, childrens = null, len = 0, child = null;
     var isGameView = Engine._curRenderContext === Engine._renderContext;
     if (isGameView && target._renderObj) {

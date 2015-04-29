@@ -16,6 +16,7 @@ function _getStyle (target) {
         return {
             font : target.bitmapFont.size + " " + target.bitmapFont._uuid,
             align: Fire.TextAlign[target.align].toLowerCase(),
+            tint: "#" + target.color.toHEX('#rrggbb'),
         };
     }
     else {
@@ -166,6 +167,10 @@ RenderContext.prototype.setAlign = function (target) {
     _setStyle(target);
 };
 
+RenderContext.prototype.setColor = function (target) {
+    _setStyle(target);
+};
+
 RenderContext.prototype.updateBitmapFont = function (target) {
     _registerFont(target.bitmapFont);
     _setStyle(target);
@@ -187,7 +192,7 @@ RenderContext.prototype.addBitmapText = function (target) {
     }
 };
 
-RenderContext.updateBitmapTextTransform = function (target, tempMatrix) {
+RenderContext.prototype.updateBitmapTextTransform = function (target, tempMatrix) {
     var i = 0, childrens = null, len = 0, child = null;
     var isGameView = Engine._curRenderContext === Engine._renderContext;
     if (isGameView && target._renderObj) {
