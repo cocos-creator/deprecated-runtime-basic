@@ -28,12 +28,16 @@ function _getStyle (target) {
 
 function _setStyle (target) {
     var style = _getStyle(target);
-    if (target._renderObj) {
-        target._renderObj.setStyle(style);
+    var obj = Fire.Engine._renderContext.getRenderObj(target);
+    if (obj) {
+        obj.setStyle(style);
     }
-    if (target._renderObjInScene) {
-        target._renderObjInScene.setStyle(style);
+    // @ifdef EDITOR
+    obj = Fire.Engine._renderContext.getRenderObjInScene(target);
+    if (obj) {
+        obj.setStyle(style);
     }
+    // @endif
 }
 
 function _getNewMatrix23 (child, tempMatrix) {
@@ -60,12 +64,6 @@ var tempData = {
 };
 
 function _registerFont (bitmapFont) {
-
-    //var registered = _hasPixiBitmapFont(bitmapFont);
-    //if (registered) {
-    //    return;
-    //}
-
     var data = {};
     if (bitmapFont && bitmapFont._uuid) {
         data.face = bitmapFont._uuid;
@@ -129,37 +127,40 @@ var _hasPixiBitmapFont = function (bitmapFont) {
     return null;
 };
 
+function _getSize (obj) {
+    if (obj) {
+        if (obj.dirty) {
+            obj.updateText();
+            obj.dirty = false;
+        }
+        return new Vec2(obj.textWidth, obj.textHeight);
+    }
+    return null;
+}
+
 RenderContext.prototype.getTextSize = function (target) {
-    var inGame = !(target.entity._objFlags & HideInGame);
-    var w = 0, h = 0;
-    if (inGame && target._renderObj) {
-        if (target._renderObj.dirty) {
-            target._renderObj.updateText();
-            target._renderObj.dirty = false;
-        }
-
-        w = target._renderObj.textWidth;
-        h = target._renderObj.textHeight;
+    var obj = this.getRenderObj(target);
+    var size = _getSize(obj);
+    // @ifdef EDITOR
+    if (! size) {
+        obj = this.getRenderObjInScene(target);
+        size = _getSize(obj);
     }
-    else if (target._renderObjInScene) {
-        if (target._renderObjInScene.dirty) {
-            target._renderObjInScene.updateText();
-            target._renderObjInScene.dirty = false;
-        }
-
-        w = target._renderObjInScene.textWidth;
-        h = target._renderObjInScene.textHeight;
-    }
-    return new Vec2(w, h);
+    // @endif
+    return size ? size : Vec2.zero;
 };
 
 RenderContext.prototype.setText = function (target, newText) {
-    if (target._renderObj) {
-        target._renderObj.setText(newText);
+    var obj = this.getRenderObj(target);
+    if (obj) {
+        obj.setText(newText);
     }
-    if (this.sceneView && target._renderObjInScene) {
-        target._renderObjInScene.setText(newText);
+    // @ifdef EDITOR
+    obj = this.getRenderObjInScene(target);
+    if (obj) {
+        obj.setText(newText);
     }
+    // @endif
 };
 
 RenderContext.prototype.setAlign = function (target) {
@@ -201,6 +202,7 @@ RenderContext.prototype.updateBitmapTextTransform = function (target, tempMatrix
             child.worldTransform = _getNewMatrix23(child, tempMatrix);
         }
     }
+    // @ifdef EDITOR
     else if (target._renderObjInScene) {
         if (target._renderObjInScene.dirty) {
             target._renderObjInScene.updateText();
@@ -212,4 +214,5 @@ RenderContext.prototype.updateBitmapTextTransform = function (target, tempMatrix
             child.worldTransform = _getNewMatrix23(child, tempMatrix);
         }
     }
+    // @endif
 };

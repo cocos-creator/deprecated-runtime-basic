@@ -130,6 +130,70 @@ var RenderContext = (function () {
         this.renderer.render(this.stage);
     };
 
+    RenderContext.prototype.getRenderObj = function (target) {
+        if (target && target._renderObj) {
+            return target._renderObj;
+        }
+        return null;
+    };
+
+    RenderContext.prototype.getRenderObjInScene = function (target) {
+        if (this.sceneView && target && target._renderObjInScene){
+            return target._renderObjInScene;
+        }
+        return null;
+    };
+
+    RenderContext.prototype.getSelfMatrix = function (target, out) {
+        var textSize = Engine._renderContext.getTextSize(target);
+        var w = textSize.x;
+        var h = textSize.y;
+
+        var anchorOffsetX = 0;
+        var anchorOffsetY = 0;
+
+        switch (target._anchor) {
+            case Fire.TextAnchor.TopLeft:
+                break;
+            case Fire.TextAnchor.TopCenter:
+                anchorOffsetX = w * -0.5;
+                break;
+            case Fire.TextAnchor.TopRight:
+                anchorOffsetX = -w;
+                break;
+            case Fire.TextAnchor.MidLeft:
+                anchorOffsetY = h * 0.5;
+                break;
+            case Fire.TextAnchor.MidCenter:
+                anchorOffsetX = w * -0.5;
+                anchorOffsetY = h * 0.5;
+                break;
+            case Fire.TextAnchor.MidRight:
+                anchorOffsetX = -w;
+                anchorOffsetY = h * 0.5;
+                break;
+            case Fire.TextAnchor.BotLeft:
+                anchorOffsetY = h;
+                break;
+            case Fire.TextAnchor.BotCenter:
+                anchorOffsetX = w * -0.5;
+                anchorOffsetY = h;
+                break;
+            case Fire.TextAnchor.BotRight:
+                anchorOffsetX = -w;
+                anchorOffsetY = h;
+                break;
+            default:
+                break;
+        }
+        out.a = 1;
+        out.b = 0;
+        out.c = 0;
+        out.d = 1;
+        out.tx = anchorOffsetX;
+        out.ty = anchorOffsetY;
+    };
+
     RenderContext.prototype.onRootEntityCreated = function (entity) {
         entity._pixiObj = this._createNode();
         // @ifdef EDITOR
