@@ -131,15 +131,15 @@ var RenderContext = (function () {
     };
 
     RenderContext.prototype.getRenderObj = function (target) {
-        if (this.sceneView && target && target._renderObjInScene){
-            return target._renderObjInScene;
+        if (target && target._renderObj) {
+            return target._renderObj;
         }
         return null;
     };
 
     RenderContext.prototype.getRenderObjInScene = function (target) {
-        if (target && target._renderObj) {
-            return target._renderObj;
+        if (this.sceneView && target && target._renderObjInScene){
+            return target._renderObjInScene;
         }
         return null;
     };

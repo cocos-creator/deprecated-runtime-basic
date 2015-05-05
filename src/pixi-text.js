@@ -74,7 +74,7 @@ function _getSize (obj) {
             obj.updateText();
             obj.dirty = false;
         }
-        return new Vec2(obj.textWidth | obj._width, obj.textHeight | obj._height);
+        return new Vec2(obj.textWidth || obj._width, obj.textHeight || obj._height);
     }
     return null;
 }
@@ -88,11 +88,10 @@ RenderContext.prototype.getTextSize = function (target) {
         size = _getSize(obj);
     }
     // @endif
-    return size ? size : Vec2.zero;
+    return size || Vec2.zero;
 };
 
 RenderContext.prototype.updateTextTransform = function (target, tempMatrix) {
-    var i = 0, childrens = null, len = 0, child = null;
     var isGameView = Engine._curRenderContext === Engine._renderContext;
     if (isGameView && target._renderObj) {
         if (target._renderObj.dirty) {
