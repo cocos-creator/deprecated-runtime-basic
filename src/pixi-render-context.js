@@ -161,25 +161,25 @@ var RenderContext = (function () {
             case Fire.TextAnchor.TopRight:
                 anchorOffsetX = -w;
                 break;
-            case Fire.TextAnchor.MidLeft:
+            case Fire.TextAnchor.MiddleLeft:
                 anchorOffsetY = h * 0.5;
                 break;
-            case Fire.TextAnchor.MidCenter:
+            case Fire.TextAnchor.MiddleCenter:
                 anchorOffsetX = w * -0.5;
                 anchorOffsetY = h * 0.5;
                 break;
-            case Fire.TextAnchor.MidRight:
+            case Fire.TextAnchor.MiddleRight:
                 anchorOffsetX = -w;
                 anchorOffsetY = h * 0.5;
                 break;
-            case Fire.TextAnchor.BotLeft:
+            case Fire.TextAnchor.BottomLeft:
                 anchorOffsetY = h;
                 break;
-            case Fire.TextAnchor.BotCenter:
+            case Fire.TextAnchor.BottomCenter:
                 anchorOffsetX = w * -0.5;
                 anchorOffsetY = h;
                 break;
-            case Fire.TextAnchor.BotRight:
+            case Fire.TextAnchor.BottomRight:
                 anchorOffsetX = -w;
                 anchorOffsetY = h;
                 break;
